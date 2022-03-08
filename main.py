@@ -27,7 +27,6 @@ if marca == "huawei":
 
 # criar nome + extensao
 def criarNome():
-    print(identificacao)
     if marca == 'mikrotik':
         return f'{identificacao}({address}) - {agora}.rsc'
     if marca == "huawei":
