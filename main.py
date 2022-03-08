@@ -21,8 +21,12 @@ agora = datetime.now().strftime("%d_%m_%y_%H_%M")
 # comanfo de acordo com o modelo
 if marca == 'mikrotik':
     comando = "export"
+    target = 'set name='
+    pattern = '^set name=(.*)\\r.*'
 if marca == "huawei":
     comando = "display current-configuration | no-more"
+    target = 'sysname '
+    pattern = 'sysname\s(.*)\\r\\n'
 
 
 # criar nome + extensao
@@ -43,13 +47,9 @@ def criarArquivo(dados):
 
 # pegar identificacao do equipamento
 def getIdentificacao(dados):
-    if marca == 'mikrotik':
-        for i in dados:
-            if 'set name=' in i:
-                return re.split('^set name=(.*)\\r.*', i)[1]
-    
-    if marca == 'huawei':
-        return 'huawei'
+    for i in dados:
+        if target in i:
+            return re.split(pattern, i)[1]
 
 
 # conexao ssh
