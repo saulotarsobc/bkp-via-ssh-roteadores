@@ -5,7 +5,7 @@ import re
 import json
 
 if len(sys.argv) != 6:
-    exit('script <ip> <porta_ssh> <user> <pass> <huawei|mikrotik]>')
+    exit('script <ip> <porta_ssh> <user> <pass> <huawei|mikrotik|furukawa]>')
 
 address = sys.argv[1]
 port = sys.argv[2]
@@ -27,6 +27,13 @@ if marca == "huawei":
     comando = "display current-configuration | no-more"
     target = 'sysname '
     pattern = 'sysname\s(.*)\\r\\n'
+if marca == "furukawa":
+    comando = '''enable
+    terminal length 0
+    show running-config
+    no terminal length'''
+    target = 'sysname '
+    pattern = 'sysname\s(.*)\\r\\n'
 
 
 # criar nome + extensao
@@ -34,6 +41,8 @@ def criarNome():
     if marca == 'mikrotik':
         return f'{identificacao}({address}) - {agora}.rsc'
     if marca == "huawei":
+        return f'{identificacao}({address}) - {agora}.sh'
+    if marca == "furukawa":
         return f'{identificacao}({address}) - {agora}.sh'
 
 

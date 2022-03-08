@@ -4,3 +4,4 @@ __*
 build
 dist
 *.spec
+teste.py
