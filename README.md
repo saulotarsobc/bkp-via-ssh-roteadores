@@ -1,25 +1,17 @@
 # python + paramiko
 
-## comandos
+## como rodar o script
 
-```ps
-# iniciar ambiente virtual
-python -m venv venv
+```sh
+script <ip> <porta_ssh> <user> <pass> <huawei|mikrotik]>
+```
 
-# instalar PyQt5
-pip3 install PyQt5 PyQt5-tools
+```sh
+# equipamento mikrotik
+script 192.168.2.3 2456 admin SuperP@ass mikrotik
+```
 
-# converter .UI par .PY
-python -m PyQt5.uic.pyuic -x interface.ui -o interface.py
-python -m PyQt5.uic.pyuic -x .\interfaces\interface.ui -o .\interface.py
-
-# converter par exe
-pip install pyinstaller
-pyinstaller --noconfirm --onefile --windowed  .\main.py
-
-# git push
-git add --all
-git commit -m ":fire:"
-git push
-
+```sh
+# hoteador huawei
+script 192.168.3.50 2266 admin Sup3rP@ass huawei
 ```
