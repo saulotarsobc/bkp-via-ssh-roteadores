@@ -5,4 +5,4 @@ build
 dist
 *.spec
 teste.py
-test2.py
+teste2.py
